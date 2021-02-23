@@ -1,0 +1,6 @@
+Reflection on Lab 1
+
+In this lab, I simulated an interaction experience between a host and its pet dog. The dog/mobile phone will respond to the words from me, of which the light color on the screen is used as an indicator of its mood. 
+
+Light color and its dynamic change can deliver a variety of information to the players. However, limited by the solo, I chose a relatively easy scenario to perform. Though it is still difficult for me to control the color using mouse, act and move the dog at the same time. Probably next time I will ask friends to help with me.
+
