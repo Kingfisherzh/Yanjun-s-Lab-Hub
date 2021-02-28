@@ -67,6 +67,7 @@ buttonA.switch_to_input()
 buttonB.switch_to_input()
 
 
+screenColor = color565(*list(webcolors.name_to_rgb(input('green'))))
 
 while True:
     if buttonA.value and buttonB.value:
