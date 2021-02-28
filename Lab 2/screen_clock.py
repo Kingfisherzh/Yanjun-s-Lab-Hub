@@ -61,6 +61,13 @@ backlight = digitalio.DigitalInOut(board.D22)
 backlight.switch_to_output()
 backlight.value = True
 
+buttonA = digitalio.DigitalInOut(board.D23)
+buttonB = digitalio.DigitalInOut(board.D24)
+buttonA.switch_to_input()
+buttonB.switch_to_input()
+
+
+
 while True:
     if buttonA.value and buttonB.value:
         backlight.value = False  # turn off backlight
