@@ -7,7 +7,6 @@ import adafruit_rgb_display.st7789 as st7789
 from time import strftime, sleep
 from adafruit_rgb_display.rgb import color565
 import webcolors
-from datetime import datetime
 
 
 # Configuration for CS and DC pins (these are FeatherWing defaults on M0/M4):
@@ -74,7 +73,7 @@ buttonB.switch_to_input()
 screenColor = color565(125, 255, 255)
 
 while True:
-    hour = now.strftime("%H")
+    hour = strftime("%H")
     if hour >= 0 and hour < 6:
         period = 'midnight'
         period_fill = "#FFFFFF"
