@@ -155,6 +155,41 @@ Can you make time interactive? You can look in `screen_test.py` for examples for
 
 **A copy of your code should be in your Lab 2 Github repo.**
 
+Key part below, the rest can be seen in [screen_clock.py](/screen_clock.py)
+
+```
+while True:
+    draw.rectangle((0, 0, width, height), outline=0, fill=0)
+
+    hour = int(strftime("%H"))
+    if hour >= 0 and hour < 6:
+        period = 'midnight'
+        period_fill = "#FFFFFF"
+    elif hour >= 6 and hour < 12:
+        period = 'morning'
+        period_fill = "#7FFFD4"
+    elif hour >= 12 and hour < 18:
+        period = 'afternoon'
+        period_fill = "#FFA500"
+    elif hour >= 18 and hour < 24:
+        period = 'evening'
+        period_fill = "#0080FF"
+
+    currentTime = strftime("%m/%d/%Y %H:%M:%S")
+    sentence = "Please have a nice day!"
+    y = top
+
+    if buttonB.value and not buttonA.value:  # just button A pressed
+        draw.text((x, y), currentTime, font=font, fill="#FFFFFF")
+    if buttonA.value and not buttonB.value:  # just button B pressed
+        draw.text((x, y), period, font=font, fill=period_fill)
+    if not buttonA.value and not buttonB.value:  # none pressed
+        draw.text((x, y), sentence, font=font, fill="#FFFFFF")
+
+    # Display image.
+    disp.image(image, rotation)
+    time.sleep(1.0)
+```
 you can push to your personal github repo by adding the files here, commiting and pushing.
 
 ```
@@ -169,6 +204,10 @@ After that git will ask you to login to your github account to upload.
 ## Make a short video of your modified barebones PiClock
 
 **Take a video of your PiClock.**
+
+Video URL:
+
+https://drive.google.com/file/d/1OAEr7lCQ_8g9tgA66o-TibU389GeAXK-/view?usp=sharing
 
 ## Part G. 
 ## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
