@@ -73,7 +73,7 @@ buttonB.switch_to_input()
 screenColor = color565(125, 255, 255)
 
 while True:
-    hour = strftime("%H")
+    hour = int(strftime("%H"))
     if hour >= 0 and hour < 6:
         period = 'midnight'
         period_fill = "#FFFFFF"
