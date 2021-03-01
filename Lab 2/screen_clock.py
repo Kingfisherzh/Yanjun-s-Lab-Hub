@@ -73,6 +73,7 @@ buttonB.switch_to_input()
 screenColor = color565(125, 255, 255)
 
 while True:
+    draw.rectangle((0, 0, width, height), outline=0, fill=0)
     
     hour = int(strftime("%H"))
     if hour >= 0 and hour < 6:
