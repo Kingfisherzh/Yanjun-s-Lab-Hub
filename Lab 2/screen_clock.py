@@ -7,6 +7,8 @@ import adafruit_rgb_display.st7789 as st7789
 from time import strftime, sleep
 from adafruit_rgb_display.rgb import color565
 import webcolors
+from datetime import datetime
+
 
 # Configuration for CS and DC pins (these are FeatherWing defaults on M0/M4):
 cs_pin = digitalio.DigitalInOut(board.CE0)
@@ -72,27 +74,35 @@ buttonB.switch_to_input()
 screenColor = color565(125, 255, 255)
 
 while True:
-    if buttonA.value and buttonB.value:
-        backlight.value = False  # turn off backlight
-    else:
-        backlight.value = True  # turn on backlight
+    hour = now.strftime("%H")
+    if hour >= 0 and hour < 6:
+        period = 'midnight'
+        period_fill = "#FFFFFF"
+    elif hour >= 6 and hour < 12:
+        period = 'morning'
+        period_fill = "#7FFFD4"
+    elif hour >= 12 and hour < 18:
+        period = 'afternoon'
+        period_fill = "#FFA500"
+    elif hour >= 18 and hour < 24:
+        period = 'evening'
+        period_fill = "#0080FF"
+
+    currentTime = strftime("%m/%d/%Y %H:%M:%S")
+    sentence = "Please have a nice day!"
+    y = top
+
     if buttonB.value and not buttonA.value:  # just button A pressed
-        disp.fill(screenColor) # set the screen to the users color
+        draw.text((x, y), currentTime, font=font, fill="#FFFFFF")
     if buttonA.value and not buttonB.value:  # just button B pressed
-        disp.fill(color565(255, 255, 255))  # set the screen to white
+        draw.text((x, y), period, font=font, fill=period_fill)
     if not buttonA.value and not buttonB.value:  # none pressed
-        disp.fill(color565(0, 255, 0))  # green
+        draw.text((x, y), sentence, font=font, fill="#FFFFFF")
 
 
     # Draw a black filled box to clear the image.
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
-    #TODO: fill in here. You should be able to look in cli_clock.py and stats.py 
-    currentTime = strftime("%m/%d/%Y %H:%M:%S")
-
-    y = top
-    draw.text((x, y), currentTime, font=font, fill="#FFFFFF")
-
     # Display image.
     disp.image(image, rotation)
-    time.sleep(1)
+    time.sleep(0.5)
