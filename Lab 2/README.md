@@ -155,7 +155,7 @@ Can you make time interactive? You can look in `screen_test.py` for examples for
 
 **A copy of your code should be in your Lab 2 Github repo.**
 
-Key part below, the rest can be seen in [screen_clock.py](/Lab 2/screen_clock.py)
+Key part below, the rest can be seen in [screen_clock.py](/Lab\ 2/screen_clock.py)
 
 ```
 while True:
