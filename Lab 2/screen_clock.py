@@ -73,8 +73,7 @@ buttonB.switch_to_input()
 screenColor = color565(125, 255, 255)
 
 while True:
-    draw.rectangle((0, 0, width, height), outline=0, fill=0)
-
+    
     hour = int(strftime("%H"))
     if hour >= 0 and hour < 6:
         period = 'midnight'
@@ -102,9 +101,6 @@ while True:
     if not buttonA.value and not buttonB.value:  # none pressed
         draw.text((x, y), sentence, font=font, fill="#FFFFFF")
         print(3)
-
-    # Draw a black filled box to clear the image.
-    draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
     # Display image.
     disp.image(image, rotation)
