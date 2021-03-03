@@ -215,5 +215,7 @@ https://drive.google.com/file/d/1OAEr7lCQ_8g9tgA66o-TibU389GeAXK-/view?usp=shari
 
 The time period indicator now is divided into several four parts, mornning, afternoon, evening and midnight. I would like to add some small tips for each period.
 
+As I also used the background color to indicate the time period, I would like to try using extra light to show the time period.
 
+Just for fun, I would like to add some hidden functions like pressing buttons in a particular order will trigger to display some fun images.
 
