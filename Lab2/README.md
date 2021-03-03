@@ -213,6 +213,12 @@ https://drive.google.com/file/d/1OAEr7lCQ_8g9tgA66o-TibU389GeAXK-/view?usp=shari
 ## Part G. 
 ## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
 
+The time period indicator now is divided into several four parts, mornning, afternoon, evening and midnight. I would like to add some small tips for each period.
+
+As I also used the background color to indicate the time period, I would like to try using extra light to show the time period.
+
+Just for fun, I would like to add some hidden functions like pressing buttons in a particular order will trigger to display some fun images.
+
 ## Prep for Part 2
 
 1. Pick up remaining parts for kit.
