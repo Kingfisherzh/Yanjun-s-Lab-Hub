@@ -213,4 +213,7 @@ https://drive.google.com/file/d/1OAEr7lCQ_8g9tgA66o-TibU389GeAXK-/view?usp=shari
 ## Sketch and brainstorm further interactions and features you would like for your clock for Part 2.
 
 
+The time period indicator now is divided into several four parts, mornning, afternoon, evening and midnight. I would like to add some small tips for each period.
+
+
 
