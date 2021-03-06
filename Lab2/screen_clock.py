@@ -115,7 +115,7 @@ while True:
     if buttonA.value and not buttonB.value:  # just button B pressed
         draw.rectangle((0, 0, width, height), outline=0, fill=period_fill)
         draw.text((x, y), period, font=font, fill="#0000FF")
-    if not buttonA.value and not buttonB.value:  # none pressed
+    while not buttonA.value and not buttonB.value:  # none pressed
         draw.rectangle((0, 0, width, height), outline=0, fill=0)
         draw.text((x, y), sentence, font=font, fill="#FFFFFF")
 
