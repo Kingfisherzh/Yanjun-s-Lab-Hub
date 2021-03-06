@@ -73,6 +73,7 @@ buttonB.switch_to_input()
 screenColor = color565(125, 255, 255)
 
 while True:
+    y = top
     txt1 = "Up: time"
     txt2 = "Bottom: time period"
     txt3 = "Both: message"
