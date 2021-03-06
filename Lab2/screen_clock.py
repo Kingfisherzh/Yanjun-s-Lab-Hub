@@ -7,7 +7,7 @@ import adafruit_rgb_display.st7789 as st7789
 from time import strftime, sleep
 from adafruit_rgb_display.rgb import color565
 import webcolors
-
+from random import choice
 
 # Configuration for CS and DC pins (these are FeatherWing defaults on M0/M4):
 cs_pin = digitalio.DigitalInOut(board.CE0)
@@ -71,7 +71,13 @@ buttonB.switch_to_input()
 
 
 screenColor = color565(125, 255, 255)
-
+messages = [
+    "Please have a nice day!",
+    "How are you?",
+    "Enjoy your time!",
+    "Focus on study.",
+    "Be strong!"
+]
 while True:
     y = top
     txt1 = "Up: time"
@@ -100,15 +106,17 @@ while True:
         period_fill = "#0080FF"
 
     currentTime = strftime("%m/%d/%Y %H:%M:%S")
-    sentence = "Please have a nice day!"
+    sentence = choice(messages)
     y = top
 
     if buttonB.value and not buttonA.value:  # just button A pressed
+        draw.rectangle((0, 0, width, height), outline=0, fill=0)
         draw.text((x, y), currentTime, font=font, fill="#FFFFFF")
     if buttonA.value and not buttonB.value:  # just button B pressed
         draw.rectangle((0, 0, width, height), outline=0, fill=period_fill)
         draw.text((x, y), period, font=font, fill="#0000FF")
     if not buttonA.value and not buttonB.value:  # none pressed
+        draw.rectangle((0, 0, width, height), outline=0, fill=0)
         draw.text((x, y), sentence, font=font, fill="#FFFFFF")
 
     # Display image.
