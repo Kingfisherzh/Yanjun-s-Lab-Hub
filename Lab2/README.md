@@ -227,10 +227,6 @@ Just for fun, I would like to add some hidden functions like pressing buttons in
 
 # Lab 2 Part 2
 
-Pull Interactive Lab Hub updates to your repo.
+Video: https://drive.google.com/file/d/1Qp-fHR5cBa2Vm3A1bkv4kxmWMJAnitRm/view?usp=sharing
 
-Modify the code from last week's lab to make a new visual interface for your new clock. You may [extend the Pi](Extending%20the%20Pi.md) by adding sensors or buttons, but this is not required.
-
-As always, make sure you document contributions and ideas from others explicitly in your writeup.
-
-You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. What each person did should be explicitly documented. Make sure the page for the group turn in is linked to your Interactive Lab Hub page. 
+I added a main menu which introduces the function of each button. For the bottom button, I changed the color of the background to make it fit more to the corresponding time perido, e.g. orange for afternoon. Also, I added a list of messages instead of a single greeting message in the case of pressing two buttons at the same time.
