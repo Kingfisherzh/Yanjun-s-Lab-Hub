@@ -234,10 +234,3 @@ Modify the code from last week's lab to make a new visual interface for your new
 As always, make sure you document contributions and ideas from others explicitly in your writeup.
 
 You are permitted (but not required) to work in groups and share a turn in; you are expected to make equal contribution on any group work you do, and N people's group project should look like N times the work of a single person's lab. What each person did should be explicitly documented. Make sure the page for the group turn in is linked to your Interactive Lab Hub page. 
-
-The time period indicator now is divided into several four parts, mornning, afternoon, evening and midnight. I would like to add some small tips for each period.
-
-As I also used the background color to indicate the time period, I would like to try using extra light to show the time period.
-
-Just for fun, I would like to add some hidden functions like pressing buttons in a particular order will trigger to display some fun images.
-
