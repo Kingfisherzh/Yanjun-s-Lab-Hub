@@ -73,7 +73,16 @@ buttonB.switch_to_input()
 screenColor = color565(125, 255, 255)
 
 while True:
+    txt1 = "Up: time"
+    txt2 = "Bottom: time period"
+    txt3 = "Both: message"
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
+    draw.text((x, y), txt1, font=font, fill="#FFFFFF")
+    y += font.getsize(txt1)[1]
+    draw.text((x, y), txt2, font=font, fill="#FFFF00")
+    y += font.getsize(txt2)[1]
+    draw.text((x, y), txt3, font=font, fill="#0000FF")
+
 
     hour = int(strftime("%H"))
     if hour >= 0 and hour < 6:
@@ -96,7 +105,8 @@ while True:
     if buttonB.value and not buttonA.value:  # just button A pressed
         draw.text((x, y), currentTime, font=font, fill="#FFFFFF")
     if buttonA.value and not buttonB.value:  # just button B pressed
-        draw.text((x, y), period, font=font, fill=period_fill)
+        draw.rectangle((0, 0, width, height), outline=0, fill=period_fill)
+        draw.text((x, y), period, font=font, fill="#0000FF")
     if not buttonA.value and not buttonB.value:  # none pressed
         draw.text((x, y), sentence, font=font, fill="#FFFFFF")
 
