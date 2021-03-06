@@ -118,6 +118,7 @@ while True:
     while not buttonA.value and not buttonB.value:  # none pressed
         draw.rectangle((0, 0, width, height), outline=0, fill=0)
         draw.text((x, y), sentence, font=font, fill="#FFFFFF")
+        time.sleep(0.5)
 
     # Display image.
     disp.image(image, rotation)
