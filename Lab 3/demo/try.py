@@ -47,7 +47,7 @@ while True:
     else:
         if 'one' in rec.PartialResult() and 'two' in rec.PartialResult() and 'three' in rec.PartialResult() and abs(max(mpu.acceleration)) > 10:
             print('You opened the box\n\n')
-            print('Your password: ' + rec.PartialResult()['partial'])
+            print(rec.PartialResult())
             print(mpu.acceleration)
             break
 
