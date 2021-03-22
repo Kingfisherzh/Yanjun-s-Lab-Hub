@@ -39,13 +39,13 @@ while True:
     if len(data) == 0:
         break
     if rec.AcceptWaveform(data):
-        if 'one' in rec.PartialResult() and 'two' in rec.PartialResult() and 'three' in rec.PartialResult() and abs(max(mpu.acceleration)) > 10:
+        if 'one' in rec.PartialResult() and 'two' in rec.PartialResult() and 'three' in rec.PartialResult() and abs(max(mpu.acceleration)) > 15:
             print(rec.PartialResult())
             print(mpu.acceleration)
             print('You opened the box')
             break
     else:
-        if 'one' in rec.PartialResult() and 'two' in rec.PartialResult() and 'three' in rec.PartialResult() and abs(max(mpu.acceleration)) > 10:
+        if 'one' in rec.PartialResult() and 'two' in rec.PartialResult() and 'three' in rec.PartialResult() and abs(max(mpu.acceleration)) > 15:
             print('You opened the box\n\n')
             print(rec.PartialResult())
             print(mpu.acceleration)
