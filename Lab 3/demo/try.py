@@ -15,7 +15,7 @@ import os
 import wave
  
 
-print('\n\n\n\nSay out the password\n\n\n\n\n') 
+print('\n\n\n\nSay out the password quickly\n\n\n\n\n') 
 i2c = busio.I2C(board.SCL, board.SDA)
 mpu = adafruit_mpu6050.MPU6050(i2c)
 
@@ -51,6 +51,8 @@ while True:
             print('Acc is ' + mpu.acceleration)
             break
 
+
+print('You failed. Try again\n\n')
 # print(rec.FinalResult())
 
 
