@@ -15,7 +15,7 @@ import os
 import wave
  
 
-print('Say out the password and shake the box') 
+print('\n\n\n\nSay out the password and shake the box\n\n\n\n\n') 
 i2c = busio.I2C(board.SCL, board.SDA)
 mpu = adafruit_mpu6050.MPU6050(i2c)
 
@@ -40,12 +40,16 @@ while True:
         if 'one' in rec.PartialResult() and 'two' in rec.PartialResult() and 'three' in rec.PartialResult() and abs(max(mpu.acceleration)) > 10:
             print(rec.PartialResult())
             print(mpu.acceleration)
+            print('You opened the box')
+            break
     else:
         if 'one' in rec.PartialResult() and 'two' in rec.PartialResult() and 'three' in rec.PartialResult() and abs(max(mpu.acceleration)) > 10:
+            print('You opened the box')
             print(rec.PartialResult())
             print(mpu.acceleration)
+            break
 
-print(rec.FinalResult())
+# print(rec.FinalResult())
 
 
 
