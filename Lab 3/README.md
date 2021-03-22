@@ -93,7 +93,7 @@ Controller:
 ![image](./controller.jpg)
 
 System:
-![image](./system.jpg)
+![image](./device.jpg)
 
 ## Test the system
 Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard _after_ the interaction, but we recognize that can be hard.)
