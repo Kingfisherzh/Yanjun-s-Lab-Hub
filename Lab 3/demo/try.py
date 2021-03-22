@@ -34,6 +34,8 @@ rec = KaldiRecognizer(model, wf.getframerate(), "zero oh one two three four five
 
 print('\n\n\n\nShake the box\n\n\n\n')
 
+success = 0
+
 while True:
     data = wf.readframes(6000)
     if len(data) == 0:
@@ -43,16 +45,18 @@ while True:
             print(rec.PartialResult())
             print(mpu.acceleration)
             print('You opened the box')
+            success = 1
             break
     else:
         if 'one' in rec.PartialResult() and 'two' in rec.PartialResult() and 'three' in rec.PartialResult() and abs(max(mpu.acceleration)) > 15:
             print('You opened the box\n\n')
             print(rec.PartialResult())
             print(mpu.acceleration)
+            success = 1
             break
 
-
-print('You failed. Try again\n\n')
+if success == 0:   
+    print('You failed. Try again\n\n')
 # print(rec.FinalResult())
 
 
