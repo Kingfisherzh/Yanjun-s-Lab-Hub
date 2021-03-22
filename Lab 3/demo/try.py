@@ -38,12 +38,12 @@ while True:
         break
     if rec.AcceptWaveform(data):
         if 'one' in rec.PartialResult() and 'two' in rec.PartialResult() and 'three' in rec.PartialResult() and abs(max(mpu.acceleration)) > 10:
-        print(rec.PartialResult())
-        print(mpu.acceleration)
+            print(rec.PartialResult())
+            print(mpu.acceleration)
     else:
         if 'one' in rec.PartialResult() and 'two' in rec.PartialResult() and 'three' in rec.PartialResult() and abs(max(mpu.acceleration)) > 10:
-        print(rec.PartialResult())
-        print(mpu.acceleration)
+            print(rec.PartialResult())
+            print(mpu.acceleration)
 
 print(rec.FinalResult())
 
