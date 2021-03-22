@@ -32,7 +32,7 @@ model = Model("model")
 # You can also specify the possible word list
 rec = KaldiRecognizer(model, wf.getframerate(), "zero oh one two three four five six seven eight nine [unk]")
 
-print('\n\n\n\nhake the box\n\n\n\n')
+print('\n\n\n\nShake the box\n\n\n\n')
 
 while True:
     data = wf.readframes(6000)
@@ -46,9 +46,9 @@ while True:
             break
     else:
         if 'one' in rec.PartialResult() and 'two' in rec.PartialResult() and 'three' in rec.PartialResult() and abs(max(mpu.acceleration)) > 10:
-            print('You opened the box')
-            print(rec.PartialResult())
-            print(mpu.acceleration)
+            print('You opened the box\n\n')
+            print('Your password: ' + rec.PartialResult())
+            print('Acc is ' + mpu.acceleration)
             break
 
 # print(rec.FinalResult())
