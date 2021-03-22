@@ -1,4 +1,4 @@
-# You're a wizard, [Student Name Here]
+# You're a wizard, [Yanjun]
 
 <img src="https://pbs.twimg.com/media/Cen7qkHWIAAdKsB.jpg" height="400">
 
@@ -68,6 +68,8 @@ Create a system that runs on the Raspberry Pi that takes in one or more sensors 
 
 1. Sketch ideas for what you'll work on in lab on Wednesday.
 
+I plan to design a magic box which will only be opened when someone say out the correct password and shake it at the same time. The design consists of the speech to text function and an extended acceleration sensor to detect the movement of the raspberry Pi.
+
 ## Share your idea sketches with Zoom Room mates and get feedback
 
 *what was the feedback? Who did it come from?*
@@ -82,6 +84,8 @@ The system should:
 *Document how the system works*
 
 *Include videos or screencaptures of both the system and the controller.*
+
+Video: https://drive.google.com/file/d/1avhoVp4_L-t6z6tfmpopCItKBOHec4Jm/view?usp=sharing
 
 ## Test the system
 Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard _after_ the interaction, but we recognize that can be hard.)
