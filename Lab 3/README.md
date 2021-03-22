@@ -74,6 +74,18 @@ I plan to design a magic box which will only be opened when someone say out the 
 
 *what was the feedback? Who did it come from?*
 
+Jingjun Wang:
+
+It's reminiscent of ali baba's story where he says  'open sesame' to find hidden treasure. I like the idea that users need to shake it as well, making sure that only the owner can open the box even if other people guess the passwords.
+
+James Wang:
+
+I think this is a good idea, and the interaction seems interesting. It would be nice to have some surprises when the box is "opened" - like some fortune cookie sayings maybe.
+
+Wenqing Tang:
+
+It's a very fun idea. There's no enough details in the description so I'm not sure whether there will be any instructions on the screen for opening the box, but if there's not I'll advice you to add those and also try to let the screen display the words the user says in case they say the right password but the speech-to-text detection is not precise enough to recognize it.
+
 ## Prototype your system
 
 The system should:
@@ -101,18 +113,19 @@ Try to get at least two people to interact with your system. (Ideally, you would
 Answer the following:
 
 ### What worked well about the system and what didn't?
-*your answer here*
+
+The system is a simple and easy design. However, limited by the length of the cable which connects the sensor and the main panel, it's hard for participants to shake the sensor while keeping the panel still. Also according to the feedback from the testees, It's a bit difficult to control the shaking direction of the acceleration sensor. Besides, participants can hardly to recognize what to do for each step as they can only read the hint from the command line and the responding time left for them is not enough. They failed several times and succeeded only after me as the designer gave them instructions. For the speech-to-text recognition part, the installed vosk vocal detection system does not work very well in accuracy. So the password has to be chosen from the 10 numbers and it has to be an easy one.
 
 ### What worked well about the controller and what didn't?
 
-*your answer here*
+The controller is a bit ugly in the apperance as it used the command line to start the python file. But in all, it's just one enter button to start, so it's quite straightforward and easy to use. Disadvantages could be that it doesn't have pause and stop buttons to record the voices separately, which could be very helpful for the participant to say the words on their paces. 
 
 ### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
 
-*your answer here*
+To let the user feel a sense of controlling is very important when designing an autonomous system. We easily neglect any in-process pause or stop functions when our product becomes "autonomous". Also, a debug function and real-time detection of the system or feedback matter a lot. 
 
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
 
-*your answer here*
+I can make a dataset consisting of people's vocal speed and their acceleration values of shaking movement. It could probably somewhat reflects the relationship between them that people may speak more fast when they get some time-limited tasks on hand and they may become more anxious. I think for this dataset, no other sensing modalities are needed. 
 
