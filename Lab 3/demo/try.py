@@ -15,7 +15,7 @@ import os
 import wave
  
 
-print('\n\n\n\nSay out the password and shake the box\n\n\n\n\n') 
+print('\n\n\n\nSay out the password\n\n\n\n\n') 
 i2c = busio.I2C(board.SCL, board.SDA)
 mpu = adafruit_mpu6050.MPU6050(i2c)
 
@@ -32,8 +32,10 @@ model = Model("model")
 # You can also specify the possible word list
 rec = KaldiRecognizer(model, wf.getframerate(), "zero oh one two three four five six seven eight nine [unk]")
 
+print('\n\n\n\nhake the box\n\n\n\n')
+
 while True:
-    data = wf.readframes(4000)
+    data = wf.readframes(6000)
     if len(data) == 0:
         break
     if rec.AcceptWaveform(data):
