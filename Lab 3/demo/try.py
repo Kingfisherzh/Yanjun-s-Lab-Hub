@@ -1,10 +1,3 @@
-import eventlet
-eventlet.monkey_patch()
-
-from flask import Flask, Response,render_template
-from flask_socketio import SocketIO, send, emit
-from subprocess import Popen, call
-
 import time
 import board
 import busio
