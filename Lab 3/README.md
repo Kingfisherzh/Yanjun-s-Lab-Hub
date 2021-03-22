@@ -83,9 +83,17 @@ The system should:
 
 *Document how the system works*
 
+Rasperry Pi is simulated as a magic box which can only be opened when someone says the correct password to it and shake the box. The system will first record your voice. After that, it will detect if the participant says out the correct password "one, two, three". The participant also needs to shake the box continuously in this process to let the absolute value of either dimension of 3D-acceleration exceeds 15. 
+
 *Include videos or screencaptures of both the system and the controller.*
 
 Video: https://drive.google.com/file/d/1avhoVp4_L-t6z6tfmpopCItKBOHec4Jm/view?usp=sharing
+
+Controller:
+![image](./controller.jpg)
+
+System:
+![image](./system.jpg)
 
 ## Test the system
 Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard _after_ the interaction, but we recognize that can be hard.)
