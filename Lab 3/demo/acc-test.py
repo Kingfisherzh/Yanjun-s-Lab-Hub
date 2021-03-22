@@ -14,4 +14,4 @@ mpu = adafruit_mpu6050.MPU6050(i2c)
 
 while mpu.acceleration:
     print(mpu.acceleration)
-    sleep(0.1)
+    time.sleep(0.1)
