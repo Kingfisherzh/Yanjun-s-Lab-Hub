@@ -14,7 +14,7 @@ import sys
 import os
 import wave
  
-
+# Password is one two three
 print('\n\n\n\nSay out the password quickly\n\n\n\n\n') 
 i2c = busio.I2C(board.SCL, board.SDA)
 mpu = adafruit_mpu6050.MPU6050(i2c)
@@ -47,8 +47,8 @@ while True:
     else:
         if 'one' in rec.PartialResult() and 'two' in rec.PartialResult() and 'three' in rec.PartialResult() and abs(max(mpu.acceleration)) > 10:
             print('You opened the box\n\n')
-            print('Your password: ' + rec.PartialResult())
-            print('Acc is ' + mpu.acceleration)
+            print('Your password: ' + rec.PartialResult()['partial'])
+            print(mpu.acceleration)
             break
 
 
