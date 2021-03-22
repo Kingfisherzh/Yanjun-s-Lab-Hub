@@ -39,6 +39,7 @@ while True:
         print(mpu.acceleration)
     else:
         print(rec.PartialResult())
+        print(mpu.acceleration)
 
 print(rec.FinalResult())
 
