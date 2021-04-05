@@ -86,6 +86,7 @@ screenColor = color565(125, 255, 255)
 
 score = 0
 count = 0
+y = top
 
 draw.rectangle((0, 0, width, height), outline=0, fill=0)
 draw.text((x, y), "Press all to start", font=font, fill="#FFFFFF")
