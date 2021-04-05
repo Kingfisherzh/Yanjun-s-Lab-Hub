@@ -92,6 +92,7 @@ while True:
     txt2 = "Fail"
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
     draw.text((x, y), num, font=font, fill="#FFFFFF")
+    disp.image(image, rotation)
     y += font.getsize(txt1)[1]
 
     t = 0.5
@@ -100,6 +101,7 @@ while True:
         if mpr121[int(num) - 1].value:
                 print(f"touched!")
                 draw.text((x, y), txt1, font=font, fill="#FFFF00")
+                disp.image(image, rotation)
                 success = True
                 break
         time.sleep(0.1)
@@ -107,7 +109,7 @@ while True:
 
     if not success:
         draw.text((x, y), txt2, font=font, fill="#FFFF00")
-
+        disp.image(image, rotation)
 
     disp.image(image, rotation)    
     time.sleep(0.5)
