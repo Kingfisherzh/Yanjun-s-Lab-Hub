@@ -86,7 +86,7 @@ screenColor = color565(125, 255, 255)
 
 while True:
     num = choice(nums)
-    print("Num %d",  num)
+    print("Num ",  num)
     y = top
     txt1 = "Great"
     txt2 = "Fail"
@@ -112,8 +112,9 @@ while True:
 
     y = top
 
-    # draw.rectangle((0, 0, width, height), outline=0, fill=0)
+    
 
     # Display image.
     disp.image(image, rotation)
+    draw.rectangle((0, 0, width, height), outline=0, fill=0)
     time.sleep(0.5)
