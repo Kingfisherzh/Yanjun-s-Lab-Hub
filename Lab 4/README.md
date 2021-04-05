@@ -130,9 +130,15 @@ Make a paper display for your project that communicates the state of the Pi and 
  
 **a. Document the design for your paper display.** (e.g. if you had to make it again from scratch, what information would you need?). Include interim iterations (or at least tell us about them).
 
+I made a simulated game machine with buttons as the controllers and a screen showing the game content. The game is abouy pressing quickly where users need to focus on the number appeared on the screen and press the corresponding button quickly (within 0.5sec).
+
 **b. Make a video of your paper display in action.**
 
+https://drive.google.com/file/d/1k230zFvhjE8mQopXmUdjKpjWl1xujAP-/view?usp=sharing
+
 **c. Explain the rationale for the design.** (e.g. Does it need to be a certain size or form or need to be able to be seen from a certain distance?)
+
+The game box is designed with a proper size that can be handled in hands or be put on the desk to play with, just like how NDS does. The PI panel is neatly settled in the main box. The four buttons are aligned with a reasonable distance between each other, allowing the game to be challenging but not uncomfortable for users to interact with. Additionally, the buttons made of cardboard are wrapped with conductive paper, which made it easy to press and has a relatively elastic feedback.
 
 ### Part D
 ### Materiality
