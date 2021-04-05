@@ -108,11 +108,12 @@ while True:
     if not success:
         draw.text((x, y), txt2, font=font, fill="#FFFF00")
 
+
+    disp.image(image, rotation)    
     time.sleep(0.5)
 
     y = top
 
-    
     draw.rectangle((0, font.getsize(txt1)[1], width, height), outline=0, fill=0)
     # Display image.
     disp.image(image, rotation)
