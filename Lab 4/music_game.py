@@ -89,7 +89,7 @@ while True:
     y = top
     txt1 = "Great"
     txt2 = "Fail"
-    draw.rectangle((0, 0, width, height), outline=0, fill=0)
+    
     draw.text((x, y), num, font=font, fill="#FFFFFF")
     y += font.getsize(txt1)[1]
 
