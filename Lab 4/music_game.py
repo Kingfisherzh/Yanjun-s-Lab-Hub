@@ -116,7 +116,7 @@ while True:
 
     y = top
 
-    draw.rectangle((0, font.getsize(txt1)[1], width, height), outline=0, fill=0)
+    draw.rectangle((0, 0, width, height), outline=0, fill=0)
     # Display image.
     disp.image(image, rotation)
     time.sleep(0.5)
