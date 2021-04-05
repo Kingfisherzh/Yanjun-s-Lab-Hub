@@ -116,5 +116,5 @@ while True:
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
     # Display image.
-    #disp.image(image, rotation)
+    disp.image(image, rotation)
     time.sleep(0.5)
