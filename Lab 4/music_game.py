@@ -97,7 +97,7 @@ while True:
     success = False
     while t > 0:
         if mpr121[int(num) - 1].value:
-                print(f"{i} touched!")
+                print(f"touched!")
                 draw.text((x, y), txt1, font=font, fill="#FFFF00")
                 success = True
                 break
