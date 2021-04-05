@@ -122,6 +122,8 @@ while True:
         y += font.getsize("End Game")[1]
         draw.text((x, y), "Score:{}/{}".format(score,count), font=font, fill="#FFFFFF")
         y += font.getsize("End Game")[1]
+        disp.image(image, rotation)
+        break
 
     num = choice(nums)
     count += 1
