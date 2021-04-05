@@ -92,7 +92,7 @@ draw.rectangle((0, 0, width, height), outline=0, fill=0)
 draw.text((x, y), "Press all to start", font=font, fill="#FFFFFF")
 disp.image(image, rotation)
 while not (mpr121[0].value and mpr121[1].value and mpr121[2].value and mpr121[3].value):
-    print(waiting)
+    print("waiting")
     time.sleep(0.1)
 draw.rectangle((0, 0, width, height), outline=0, fill=0)
 draw.text((x, y), "Count: 3", font=font, fill="#FFFFFF")
