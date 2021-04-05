@@ -80,7 +80,7 @@ buttonB = digitalio.DigitalInOut(board.D24)
 buttonA.switch_to_input()
 buttonB.switch_to_input()
 '''
-nums = ["1","2","3","4"]
+nums = ["1","2","3"]
 
 screenColor = color565(125, 255, 255)
 
@@ -91,8 +91,8 @@ y = top
 draw.rectangle((0, 0, width, height), outline=0, fill=0)
 draw.text((x, y), "Press all to start", font=font, fill="#FFFFFF")
 disp.image(image, rotation)
-while not (mpr121[0].value and mpr121[1].value and mpr121[2].value and mpr121[3].value):
-    print(mpr121[0].value, mpr121[1].value, mpr121[2].value, mpr121[3].value)
+while not (mpr121[0].value and mpr121[1].value and mpr121[2].value):
+    print(mpr121[0].value, mpr121[1].value, mpr121[2].value)
     print("waiting")
     time.sleep(0.1)
 draw.rectangle((0, 0, width, height), outline=0, fill=0)
@@ -116,7 +116,7 @@ disp.image(image, rotation)
 time.sleep(1.0)
 
 while True:
-    if (mpr121[0].value and mpr121[1].value and mpr121[2].value and mpr121[3].value):
+    if (mpr121[0].value and mpr121[1].value and mpr121[2].value):
         draw.rectangle((0, 0, width, height), outline=0, fill=0)
         draw.text((x, y), "End Game", font=font, fill="#FFFFFF")
         y += font.getsize("End Game")[1]
