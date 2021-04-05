@@ -107,11 +107,13 @@ while True:
     if not success:
         draw.text((x, y), txt2, font=font, fill="#FFFF00")
 
-    if t > 0: time.sleep(t)
+    time.sleep(0.5)
 
     t = 0.5
     success = False
     y = top
+
+    draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
     # Display image.
     disp.image(image, rotation)
