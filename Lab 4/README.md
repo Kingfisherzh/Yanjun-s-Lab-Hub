@@ -145,11 +145,13 @@ The game box is designed with a proper size that can be handled in hands or be p
 
 **Open Ended**: We are putting very few constraints on this part but we want you to get creative.
 
-Design a system with the Pi and anything from your kit with a focus on form, and materiality. The "stuff" that enclose the system should be informed by the desired interaction. What would a computer made of rocks be like? How would an ipod made of grass behave? Would a roomba made of gold clean your floor any differently?
+I chose cardboard as I think it is the most easy-to-reach and cheap material. Conductive paper are being used to increase the touching area, as well as to allow a better touching feedback.
 
-**a. document the material prototype.** Include candidates that were considered even if they were set aside later.
+Interaction Video: https://drive.google.com/file/d/1L7ThOD-2_M3TWjy9pX8tpVICtr8BYJdI/view?usp=sharing
 
-**b. explain the selection.**
+![image](photos/paper1.jpg)
+![image](photos/paper2.jpg)
+![image](photos/paper3.jpg)
 
 ### Part 2.
 
@@ -158,9 +160,20 @@ Following exploration and reflection from Part 1, complete the "looks like," "wo
 Reiterating:
 ### Deliverables for this lab are: 
 1. Sketches/photos of device designs
-1. "Looks like" prototypes: show us what how the device should look, feel, sit, weigh, etc.
-3. "Works like" prototypes: show us what the device can do
-4. "Acts like" prototypes: videos/storyboards/other means of showing how a person would interact with the device
-5. Submit these in the lab 4 folder of your class [Github page], either as links or uploaded files. Each group member should post their own copy of the work to their own Lab Hub, even if some of the work is the same for each person in the group.
+![image](photos/finish1.jpg)
+![image](photos/finish2.jpg)
 
+2. "Looks like" prototypes: show us what how the device should look, feel, sit, weigh, etc.
+
+It is small and neat design that the PI is put in the upper box with its RGB screen can be seen through a cut window and the interactive capacitive buttons are aligned in the bottom. The four buttons are mounted a bit higher than the panel so as to allow the users press them more easily. Besides, an extra cardboard is put below the buttons that gives more elastic feedback to the users.
+
+3. "Works like" prototypes: show us what the device can do
+
+It is a small game box with on which the user can play a "Quick Press" game. A number ranging from 1 to 4 will be randomly generated and shown on the screen. The player needs to quickly press the button of the same number within 0.5sec. Once the number is being pressed in the defined time period, a text message "Great" will show on the bottom part of the screen. Otherwise, there will be 'Fail'. The screen will be cleaned up after each time. 
+
+In the initial design, the game will start immediately once the command line is input and this will cause the user to miss the first several numbers. To improve the user experience, I added an introduction step before the start of the game which requires users to press the buttons together to start the game. Also, a 3-sec counting down is added. To end the game, the user needs to press the buttons together again. A final score of the correct-pressings/total-nums will be shown. 
+
+4. "Acts like" prototypes: videos/storyboards/other means of showing how a person would interact with the device
+
+Improved design: https://drive.google.com/file/d/14F3yM8vKgIgOtd4cLB6r0dy8gblMMtbe/view?usp=sharing
 
