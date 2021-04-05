@@ -149,6 +149,7 @@ I chose cardboard as I think it is the most easy-to-reach and cheap material. Co
 
 Interaction Video: https://drive.google.com/file/d/1L7ThOD-2_M3TWjy9pX8tpVICtr8BYJdI/view?usp=sharing
 
+<img width=0.5 height=0.5 src="photos/paper1.jpg">
 ![image](photos/paper1.jpg)
 ![image](photos/paper2.jpg)
 ![image](photos/paper3.jpg)
