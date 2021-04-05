@@ -107,8 +107,8 @@ while True:
     if not success:
         draw.text((x, y), txt2, font=font, fill="#FFFF00")
 
-    time.sleep(t)
-    
+    if t > 0: time.sleep(t)
+
     t = 0.5
     success = False
     y = top
