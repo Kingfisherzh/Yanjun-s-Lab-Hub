@@ -121,8 +121,15 @@ This can be as simple as the boat detector earlier.
 Try out different interactions outputs and inputs.
 **Describe and detail the interaction, as well as your experimentation.**
 
+![image](model.jpg)
+I tried to build a finger-digit-detection model using TeachableMachine. Dataset of digits from 1 to 5 is collected and built, each with 34 pieces of images. All the data use Yanjun's left hand as the reference and are shot with my laptop webcam with white wall as the background. Occulusion or complex background is avoided as much as possible.
+
+
 ### Part C
 ### Test the interaction prototype
+
+The model generally has a good performance when being used to detect the hands similar to the raw data, which are hands being located in the center with blank background.
+![image](1.jpg)![image](2.jpg)![image](3.jpg)![image](4.jpg)![image](5.jpg)
 
 Now flight test your interactive prototype and **note your observations**:
 For example:
