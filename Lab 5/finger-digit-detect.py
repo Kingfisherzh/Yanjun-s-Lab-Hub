@@ -29,7 +29,7 @@ greenButton.begin()
 
 # initialize the display
 pygame.init()
-screen = pygame.display.set_mode((0,0), int(pygame.FULLSCREEN/2))
+screen = pygame.display.set_mode((0,0), int(screen.get_width()/2), int(screen.get_height()/2))
 
 capture_manager = PiCameraStream(resolution=(screen.get_width(), screen.get_height()), rotation=180, preview=False)
 
@@ -54,7 +54,7 @@ def main(args):
     global last_spoken
 
     pygame.mouse.set_visible(False)
-    screen.fill((0,0,0), int(pygame.FULLSCREEN/2))
+    screen.fill((0,0,0), int(screen.get_width()/2), int(screen.get_height()/2))
     try:
         splash = pygame.image.load(os.path.dirname(sys.argv[0])+'/bchatsplash.bmp')
         screen.blit(splash, ((screen.get_width() / 2) - (splash.get_width() / 2),
