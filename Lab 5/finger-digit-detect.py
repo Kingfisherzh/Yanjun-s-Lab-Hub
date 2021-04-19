@@ -102,7 +102,10 @@ def main(args):
             label, name, conf = p
             if conf > CONFIDENCE_THRESHOLD:
                 print("Detected", name)
-
+                if name == "Class 1":
+                    greenButton.LED_on(255)
+                else:
+                greenButton.LED_off()
                 persistant_obj = False  # assume the object is not persistant
                 last_seen.append(name)
                 last_seen.pop(0)
@@ -119,10 +122,6 @@ def main(args):
                         detecttextfont = f
                         break
                     # Light up when digit 1    
-                    if detecttext == "Class 1":
-                        greenButton.LED_on(255)
-                    else:
-                        redButton.LED_off()
                 else:
                     detecttextfont = smallfont # well, we'll do our best
                 detecttext_color = (0, 255, 0) if persistant_obj else (255, 255, 255)
