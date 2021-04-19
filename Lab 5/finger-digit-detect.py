@@ -105,7 +105,7 @@ def main(args):
                 if name == "Class 1":
                     greenButton.LED_on(255)
                 else:
-                greenButton.LED_off()
+                    greenButton.LED_off()
                 persistant_obj = False  # assume the object is not persistant
                 last_seen.append(name)
                 last_seen.pop(0)
