@@ -1,92 +1,151 @@
-import numpy as np
-import cv2
-import sys
+# Python
 import time
+import logging
+import argparse
+import pygame
+import os
+import sys
+import numpy as np
+import subprocess
 
 import qwiic_button
 
-CONFIDENCE_THRESHOLD = 0.55   # at what confidence level do we say we detected a thing
-# what percentage of the time we have to have seen a thing
-PERSISTANCE_THRESHOLD = 0.25
+CONFIDENCE_THRESHOLD = 0.5   # at what confidence level do we say we detected a thing
+PERSISTANCE_THRESHOLD = 0.25  # what percentage of the time we have to have seen a thing
 
+os.environ['SDL_FBDEV'] = "/dev/fb1"
+os.environ['SDL_VIDEODRIVER'] = "fbcon"
+
+# App
 sys.path.insert(0, '../../rpi-vision')
+from rpi_vision.agent.capture import PiCameraStream
 from rpi_vision.models.teachablemachine import TeachableMachine
 
-face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-redButton = qwiic_button.QwiicButton()
-redButton.begin()
+logging.basicConfig()
+logging.getLogger().setLevel(logging.INFO)
+
+greenButton = qwiic_button.QwiicButton()
+greenButton.begin()
+
+# initialize the display
+pygame.init()
+screen = pygame.display.set_mode((0,0), pygame.FULLSCREEN)
+
+capture_manager = PiCameraStream(resolution=(screen.get_width(), screen.get_height()), rotation=180, preview=False)
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--include-top', type=bool,
+                        dest='include_top', default=True,
+                        help='Include fully-connected layer at the top of the network.')
+
+    parser.add_argument('savedmodel', help='TeachableMachine savedmodel')
+
+    parser.add_argument('--tflite',
+                        dest='tflite', action='store_true', default=False,
+                        help='Convert base model to TFLite FlatBuffer, then load model into TFLite Python Interpreter')
+    args = parser.parse_args()
+    return args
 
 last_seen = [None] * 10
 last_spoken = None
-img = None
-webCam = False
 
-try:
-    print("Trying to open the Webcam.")
-    cap = cv2.VideoCapture(0)
-    if cap is None or not cap.isOpened():
-        raise("No camera")
-    webCam = True
-except:
-    print(f'No Camera detected!')
+def main(args):
+    global last_spoken
 
-# model = TeachableMachine('models/mask-nomask-random.zip')
-model = TeachableMachine('models/mask-vs-no-mask.zip')
+    pygame.mouse.set_visible(False)
+    screen.fill((0,0,0))
+    try:
+        splash = pygame.image.load(os.path.dirname(sys.argv[0])+'/bchatsplash.bmp')
+        screen.blit(splash, ((screen.get_width() / 2) - (splash.get_width() / 2),
+                    (screen.get_height() / 2) - (splash.get_height() / 2)))
+    except pygame.error:
+        pass
+    pygame.display.update()
 
-font = cv2.FONT_HERSHEY_SIMPLEX
-fontScale = 1
-lineType = 2
+    # use the default font
+    smallfont = pygame.font.Font(None, 24)
+    medfont = pygame.font.Font(None, 36)
+    bigfont = pygame.font.Font(None, 48)
 
-while(True):
-    if webCam:
-        ret, img = cap.read()
+    model = TeachableMachine(args.savedmodel)
+    capture_manager.start()
 
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-    found_unmask = False
+    while not capture_manager.stopped:
+        if capture_manager.frame is None:
+            continue
+        frame = capture_manager.read()
+        # get the raw data frame & swap red & blue channels
+        previewframe = np.ascontiguousarray(np.flip(np.array(capture_manager.frame), 2))
+        # make it an image
+        img = pygame.image.frombuffer(previewframe, capture_manager.camera.resolution, 'RGB')
+        # draw it!
+        screen.blit(img, (0, 0))
 
-    for (x, y, w, h) in faces:
-        img = cv2.rectangle(img, (x, y), (x+w, y+h), (255, 0, 0), 2)
-        roi_color = img[y:y+h, x:x+w]
+        timestamp = time.monotonic()
+        if args.tflite:
+            prediction = model.tflite_predict(frame)[0]
+        else:
+            prediction = model.predict(frame)[0]
+        logging.info(prediction)
+        delta = time.monotonic() - timestamp
+        logging.info("%s inference took %d ms, %0.1f FPS" % ("TFLite" if args.tflite else "TF", delta * 1000, 1 / delta))
+        print(last_seen)
 
-        prediction = model.predict(roi_color)[0]
-        print(f'Predictions = {prediction}')
+        # add FPS on top corner of image
+        fpstext = "%0.1f FPS" % (1/delta,)
+        fpstext_surface = smallfont.render(fpstext, True, (255, 0, 0))
+        fpstext_position = (screen.get_width()-10, 10) # near the top right corner
+        screen.blit(fpstext_surface, fpstext_surface.get_rect(topright=fpstext_position))
+
         for p in prediction:
             label, name, conf = p
             if conf > CONFIDENCE_THRESHOLD:
                 print("Detected", name)
-                text_pos = (int(x), int(y+h+fontScale+10))
-                cv2.putText(img, name, text_pos, font,
-                            fontScale, (255, 0, 0), lineType)
-                if name == 'No Mask':
-                    found_unmask = True
 
                 persistant_obj = False  # assume the object is not persistant
                 last_seen.append(name)
                 last_seen.pop(0)
 
                 inferred_times = last_seen.count(name)
-                # over quarter time
-                if inferred_times / len(last_seen) > PERSISTANCE_THRESHOLD:
+                if inferred_times / len(last_seen) > PERSISTANCE_THRESHOLD:  # over quarter time
                     persistant_obj = True
-            else:
-                last_seen.append(None)
-                last_seen.pop(0)
-                if last_seen.count(None) == len(last_seen):
-                    last_spoken = None
-        
-        if found_unmask:
-            redButton.LED_on(255)
+
+                detecttext = name.replace("_", " ")
+                detecttextfont = None
+                for f in (bigfont, medfont, smallfont):
+                    detectsize = f.size(detecttext)
+                    if detectsize[0] < screen.get_width(): # it'll fit!
+                        detecttextfont = f
+                        break
+                    # Light up when digit 1    
+                    if detecttext == "Class 1":
+                        greenButton.LED_on(255)
+                    else:
+                        redButton.LED_off()
+                else:
+                    detecttextfont = smallfont # well, we'll do our best
+                detecttext_color = (0, 255, 0) if persistant_obj else (255, 255, 255)
+                detecttext_surface = detecttextfont.render(detecttext, True, detecttext_color)
+                detecttext_position = (screen.get_width()//2,
+                                       screen.get_height() - detecttextfont.size(detecttext)[1])
+                screen.blit(detecttext_surface, detecttext_surface.get_rect(center=detecttext_position))
+
+                if persistant_obj and last_spoken != detecttext:
+                    os.system('echo %s | festival --tts & ' % detecttext)
+                    last_spoken = detecttext
+                break
         else:
-            redButton.LED_off()
+            last_seen.append(None)
+            last_seen.pop(0)
+            if last_seen.count(None) == len(last_seen):
+                last_spoken = None
 
-    if webCam:
-        cv2.imshow('face-detection (press q to quit.)', img)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            cap.release()
-            break
-    else:
-        break
+        pygame.display.update()
 
-cv2.imwrite('faces_detected.jpg', img)
-cv2.destroyAllWindows()
+if __name__ == "__main__":
+    args = parse_args()
+    try:
+        main(args)
+    except KeyboardInterrupt:
+        capture_manager.stop()
