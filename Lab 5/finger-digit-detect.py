@@ -54,7 +54,7 @@ def main(args):
     global last_spoken
 
     pygame.mouse.set_visible(False)
-    screen.fill((0,0,0), (1080, 720))
+    screen.fill((0,0,0))
     try:
         splash = pygame.image.load(os.path.dirname(sys.argv[0])+'/bchatsplash.bmp')
         screen.blit(splash, ((screen.get_width() / 2) - (splash.get_width() / 2),
