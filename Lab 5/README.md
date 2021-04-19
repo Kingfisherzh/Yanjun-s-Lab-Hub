@@ -129,7 +129,7 @@ I tried to build a finger-digit-detection model using TeachableMachine. Dataset 
 ### Test the interaction prototype
 
 The model generally has a good performance when being used to detect the hands similar to the raw data, which are hands being located in the center with blank background.
-<img src="/1.png" width="40%" height= width="40%" /> ![image](2.png)![image](3.png)![image](4.png)![image](5.png)
+<img src="/1.png" width="40%" height="40%" /> ![image](2.png)![image](3.png)![image](4.png)![image](5.png)
 
 Now flight test your interactive prototype and **note your observations**:
 For example:
