@@ -124,40 +124,71 @@ Try out different interactions outputs and inputs.
 ![image](model.png)
 I tried to build a finger-digit-detection model using TeachableMachine. Dataset of digits from 1 to 5 is collected and built, each with 34 pieces of images. All the data use Yanjun's left hand as the reference and are shot with my laptop webcam with white wall as the background. Occulusion or complex background is avoided as much as possible.
 
+Following an open-sesame design in Lab 3, which is audio-based detection of the number information in human voices, this time I plan to design a gesture-based magic box. People need to make the right hand gesture pose as the keyword to open the magic box. 
 
 ### Part C
 ### Test the interaction prototype
 
 The model generally has a good performance when being used to detect the hands similar to the raw data, which are hands being located in the center with blank background.
-<img src="1.png" width=0.3 height=0.3 /> ![image](2.png)![image](3.png)![image](4.png)![image](5.png)
+![image](1.png) ![image](2.png)![image](3.png)![image](4.png)![image](5.png)
 
 Now flight test your interactive prototype and **note your observations**:
-For example:
-1. When does it what it is supposed to do?
+
 1. When does it fail?
-1. When it fails, why does it fail?
-1. Based on the behavior you have seen, what other scenarios could cause problems?
+
+The detection result goes bad with complex background and any abnormal hand gestures. It means that if the background includes any other objects or the hand is rotated from its horizontal axis, the estimated result could be wrong.
+
+2. When it fails, why does it fail?
+
+As our dataset is all built with white wall as background, it is not robust against those common complex backgrounds in our daily life. Besides, a relatively dark environment makes it worse.
+
 
 **Think about someone using the system. Describe how you think this will work.**
 1. Are they aware of the uncertainties in the system?
-1. How bad would they be impacted by a miss classification?
-1. How could change your interactive system to address this?
-1. Are there optimizations you can try to do on your sense-making algorithm.
+ 
+Without any provided graphical feedback,  the participants would probably not recognize the uncerntainty that immediately. But as soon as they ensure that their hand gestures are correct but the green LED is not lit up, they would recognize that it was the system's fault.
+
+2. How bad would they be impacted by a miss classification?
+
+As the expected input will be a series of numbers, any miss in the number queue will be very bad as the user has to input from the beginning again.
+
+3. How could change your interactive system to address this?
+
+To avoid such a kind of annoying result, I decided to simplify the system to only detect one-digit input. It means that as far as the user makes a correct gesture, like 1, the green LED will light up.
 
 ### Part D
 ### Characterize your own Observant system
 
 Now that you have experimented with one or more of these sense-making systems **characterize their behavior**.
 During the lecture, we mentioned questions to help characterize a material:
-* What can you use X for?
-* What is a good environment for X?
-* What is a bad environment for X?
-* When will X break?
-* When it breaks how will X break?
-* What are other properties/behaviors of X?
-* How does X feel?
+* What can you use finger-digit-detection model for?
 
-**Include a short video demonstrating the answers to these questions.**
+Finger digit detection could be very useful when dealing with contactless scenarios, especially under this epidemic. Given that not only that oeople wearing masks are hard to be recognized by their phones, but also touching the phone is highly risky, showing the gesture in front of a webcam could be a hygienic metric to replace them. 
+
+* What is a good environment for finger-digit-detection model?
+
+Pure-color background, fewer occlusion, and a bright environment.
+
+* What is a bad environment for finger-digit-detection model?
+
+Complex background, wide-range occlusion and a dark environment.
+
+* When will finger-digit-detection model break?
+
+As the dataset comes from Yanjun's hand, detection results on other people's hands may become poor.
+
+* When it breaks how will finger-digit-detection model break?
+
+It will pop out false negatives, like predicting digit 2 but the label is digit 1.
+
+* What are other properties/behaviors of finger-digit-detection model?
+
+Even though the image will not be shown to the user diretly, its fps is not that high, which may makes the detection worse under dynamic scenarios. 
+
+* How does finger-digit-detection model feel?
+
+It is a simple and tiny design afterall. Every part of PI is set in a small box. With one open side to show the camera and the green LED. 
+
 
 ### Part 2.
 
@@ -165,3 +196,6 @@ Following exploration and reflection from Part 1, finish building your interacti
 
 **Include a short video demonstrating the finished result.**
 
+https://drive.google.com/file/d/1HrbwIlv4cZirZQbvyI2kecmcSXOBVxVk/view?usp=sharing
+
+The detection went poor comparing to the test on laptop webcam. Two reasons could contribute to this. One is the low resolution and low fps. The other is the dark environment.
