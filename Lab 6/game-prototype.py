@@ -129,7 +129,7 @@ while content != enemy + 'win':
     touched = False
 
     txt = "It's your turn," + turn
-    printText(image, draw, txt):
+    printText(image, draw, txt)
 
     # Your turn
     while not touched:
@@ -146,7 +146,7 @@ while content != enemy + 'win':
                 # If not blank
                 else:
                     txt = "Not allowed. Try again."
-                    printText(image, draw, txt):
+                    printText(image, draw, txt)
                     continue   
 
     # Send a signal, e.g. 1X
