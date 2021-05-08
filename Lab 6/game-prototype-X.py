@@ -128,7 +128,7 @@ def printText(image, draw, txt):
 
 def check(turn, count, theBoard):
     print(count)
-    if count >= 3:
+    if count >= 5:
         if theBoard['7'] == theBoard['8'] == theBoard['9'] != ' ':
             txt = turn + " won."                 
             printText(image, draw, txt)               
@@ -155,7 +155,7 @@ def check(turn, count, theBoard):
             printText(image, draw, txt) 
             
     # If neither X nor O wins and the board is full, we'll declare the result as 'tie'.
-    if count == 5:
+    if count == 9:
         txt = "It's a Tie!!"             
         printText(image, draw, txt)              
         return True
@@ -232,6 +232,7 @@ while content != enemy + 'win':
             if player == enemy:
                 printBoard(move, player, image, disp, rotation)
                 theBoard[str(move)] = player
+                count += 1
                 break
     
 

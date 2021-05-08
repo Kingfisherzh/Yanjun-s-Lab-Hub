@@ -128,7 +128,7 @@ def printText(image, draw, txt):
 
 def check(turn, count, theBoard):
     print(count)
-    if count >= 3:
+    if count >= 5:
         if theBoard['7'] == theBoard['8'] == theBoard['9'] != ' ':
             txt = turn + " won."                 
             printText(image, draw, txt)               
@@ -153,12 +153,12 @@ def check(turn, count, theBoard):
         elif theBoard['1'] == theBoard['5'] == theBoard['9'] != ' ':     
             txt = turn + " won."                 
             printText(image, draw, txt) 
-            
+
     # If neither X nor O wins and the board is full, we'll declare the result as 'tie'.
-    if count == 4:
+    if count == 9:
         txt = "It's a Tie!!"             
         printText(image, draw, txt)              
-        return True
+        return True          
 
 ###################################################
 ###################################################
@@ -184,20 +184,22 @@ while content != enemy:
 
 # Game start
 while content != enemy + 'win':
-    
+    txt = "Wait your oppo"
+    printText(image, draw, txt)
     # Enemy's turn, detect enemy signal
     while True:
-        txt = "Wait your oppo"
-        printText(image, draw, txt)
-        print(content)
         if len(content) == 2 and content[1] == enemy:
-            print("1111111111111")
             move, player = content[0], content[1]
             if player == enemy:
-                print("222222222222")
                 printBoard(move, player, image, disp, rotation)
                 theBoard[move] = player
+                count += 1
                 break
+    
+    # Now we will check if player X or O has won,for every move after 5 moves. 
+    end = check(turn, count, theBoard)
+    if end:           
+        break
 
     touched = False
 
@@ -233,8 +235,7 @@ while content != enemy + 'win':
 
     # Now we will check if player X or O has won,for every move after 5 moves. 
     end = check(turn, count, theBoard)
-    if end:
-        # client.publish(topic, turn + 'win')
+    if end:           
         break
 
 
