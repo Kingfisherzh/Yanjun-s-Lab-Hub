@@ -50,7 +50,7 @@ draw = ImageDraw.Draw(image)
 draw.rectangle((0, 0, width, height), outline=0, fill=(255, 255, 255))
 
 # Always paste later image to primal image
-background = Image.open("Yanjun-s-Lab-Hub/Lab 6/move-img/background.png").resize((height, height))
+background = Image.open("move-img/background.png").resize((height, height))
 image.paste(background, (0,0),background)
 
 disp.image(image, rotation)
@@ -106,78 +106,19 @@ client.connect(
     'farlab.infosci.cornell.edu',
     port=8883)
 
-connect.loop_start()
+client.loop_start()
 ###################################################
 ###################################################
-
-
-theBoard = {'1': ' ' , '2': ' ' , '3': ' ' ,
-            '4': ' ' , '5': ' ' , '6': ' ' ,
-            '7': ' ' , '8': ' ' , '9': ' ' }
-
-turn = 'X'
-enemy = 'O'
-count = 0
-end = False
-touched = False
-# Send a signal to broker
-client.publish(topic, turn)
-
-# Game start
-while content != enemy + 'win':
-    
-    touched = False
-
-    txt = "It's your turn," + turn
-    printText(image, draw, txt)
-
-    # Your turn
-    while not touched:
-        # Detect which pin is touched
-        for i in range(1,10):
-            if mpr121[i].value:
-                move = i
-                # If blank
-                if theBoard[move] == ' ':
-                    theBoard[move] = turn
-                    count += 1
-                    printBoard(move, turn, image, disp, rotation)
-                    touched = True
-                # If not blank
-                else:
-                    txt = "Not allowed. Try again."
-                    printText(image, draw, txt)
-                    continue   
-
-    # Send a signal, e.g. 1X
-    client.publish(topic, str(mov) + turn)
-    content = str(mov) + turn
-
-    # Now we will check if player X or O has won,for every move after 5 moves. 
-    end = check(turn, count, theBoard)
-    if end:
-        client.publish(topic, turn + 'win')
-        break
-
-    # Enemy's turn, detect enemy signal
-    while True:
-        move, player = content[0], content[1]
-        if player == enemy:
-            printboard(move, player, image, disp, rotation)
-            theBoard[move] = player
-            break
-    
-
-
 def printBoard(move, player, image, disp, rotation):
     # Draw board with player and move
-    newImg = Image.open("/move-img/{}{}.png".format(move, player)).resize((height, height))
+    newImg = Image.open("move-img/{}{}.png".format(move, player)).resize((height, height))
     image.paste(newImg, (0,0),newImg)
     disp.image(image, rotation)
 
 
 def printText(image, draw, txt):
     y = 0
+    draw.rectangle((int(width/2)+20, 0, width, height), outline=0, fill="#FFFFFF")
     words = txt.split()
     for i in range(len(words)):
         draw.text((int(width/2)+20, y), words[i], font=font, fill="#000000")
@@ -208,3 +149,72 @@ def check(turn, count, theBoard):
     if count == 9:             
         print("It's a Tie!!")
         return True
+
+###################################################
+###################################################
+
+
+theBoard = {'1': '' , '2': '' , '3': '' ,
+            '4': '' , '5': '' , '6': '' ,
+            '7': '' , '8': '' , '9': '' }
+
+turn = 'X'
+enemy = 'O'
+count = 0
+end = False
+touched = False
+# Send a signal to broker
+client.publish(topic, turn)
+
+# Game start
+while content != enemy + 'win':
+    
+    touched = False
+
+    txt = "It's your turn," + turn
+    printText(image, draw, txt)
+
+    # Your turn
+    while not touched:
+        # Detect which pin is touched
+        for i in range(1,10):
+            if mpr121[i].value:
+                move = i
+                # If blank
+                if theBoard[str(move)] == '':
+                
+                    theBoard[str(move)] = turn
+                    count += 1
+                    printBoard(move, turn, image, disp, rotation)
+                    touched = True
+                # If not blank
+                else:
+                    txt = "Not allowed. Try again."
+                    printText(image, draw, txt)
+                    continue   
+
+    # Send a signal, e.g. 1X
+    client.publish(topic, str(move) + turn)
+    content = str(move) + turn
+
+    # Clear text
+    
+    txt = "Wait your opposite"
+    printText(image, draw, txt)
+
+    # Now we will check if player X or O has won,for every move after 5 moves. 
+    end = check(turn, count, theBoard)
+    if end:
+        client.publish(topic, turn + 'win')
+        break
+
+    # Enemy's turn, detect enemy signal
+    while True:
+        move, player = content[0], content[1]
+        if player == enemy:
+            printboard(move, player, image, disp, rotation)
+            theBoard[move] = player
+            break
+    
+
+
