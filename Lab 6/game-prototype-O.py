@@ -88,7 +88,7 @@ def on_message(cleint, userdata, msg):
     if msg.topic == topic:
         global content
         content = msg.payload.decode('UTF-8')
-        # print("on_message: ", content)
+        print("on_message: ", content)
 
 # Every client needs a random ID
 client = mqtt.Client(str(uuid.uuid1()))
@@ -127,7 +127,8 @@ def printText(image, draw, txt):
 
 
 def check(turn, count, theBoard):
-    if count >= 5:
+    print(count)
+    if count >= 3:
         if theBoard['7'] == theBoard['8'] == theBoard['9'] != ' ':
             txt = turn + " won."                 
             printText(image, draw, txt)               
@@ -154,7 +155,7 @@ def check(turn, count, theBoard):
             printText(image, draw, txt) 
             
     # If neither X nor O wins and the board is full, we'll declare the result as 'tie'.
-    if count == 9:
+    if count == 4:
         txt = "It's a Tie!!"             
         printText(image, draw, txt)              
         return True
@@ -173,23 +174,28 @@ count = 0
 end = False
 touched = False
 
+"""
 # Detect enemy
 while content != enemy:
     # Send a signal to broker
     client.publish(topic, turn)
     time.sleep(0.5)
-
+"""
 
 # Game start
 while content != enemy + 'win':
     
     # Enemy's turn, detect enemy signal
     while True:
-        # print(content)
-        if len(content) == 2:
+        txt = "Wait your oppo"
+        printText(image, draw, txt)
+        print(content)
+        if len(content) == 2 and content[1] == enemy:
+            print("1111111111111")
             move, player = content[0], content[1]
             if player == enemy:
-                printboard(move, player, image, disp, rotation)
+                print("222222222222")
+                printBoard(move, player, image, disp, rotation)
                 theBoard[move] = player
                 break
 
@@ -228,7 +234,7 @@ while content != enemy + 'win':
     # Now we will check if player X or O has won,for every move after 5 moves. 
     end = check(turn, count, theBoard)
     if end:
-        client.publish(topic, turn + 'win')
+        # client.publish(topic, turn + 'win')
         break
 
 
