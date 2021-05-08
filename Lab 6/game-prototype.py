@@ -128,26 +128,35 @@ def printText(image, draw, txt):
 
 def check(turn, count, theBoard):
     if count >= 5:
-        if theBoard['7'] == theBoard['8'] == theBoard['9'] != ' ':                 
-            print(" **** " +turn + " won. ****")                
+        if theBoard['7'] == theBoard['8'] == theBoard['9'] != ' ':
+            txt = turn + " won."                 
+            printText(image, draw, txt)               
         elif theBoard['4'] == theBoard['5'] == theBoard['6'] != ' ':   
-            print(" **** " +turn + " won. ****")
+            txt = turn + " won."                 
+            printText(image, draw, txt) 
         elif theBoard['1'] == theBoard['2'] == theBoard['3'] != ' ': 
-            print(" **** " +turn + " won. ****")
+            txt = turn + " won."                 
+            printText(image, draw, txt) 
         elif theBoard['1'] == theBoard['4'] == theBoard['7'] != ' ': 
-            print(" **** " +turn + " won. ****")
+            txt = turn + " won."                 
+            printText(image, draw, txt) 
         elif theBoard['2'] == theBoard['5'] == theBoard['8'] != ' ':
-            print(" **** " +turn + " won. ****")
+            txt = turn + " won."                 
+            printText(image, draw, txt) 
         elif theBoard['3'] == theBoard['6'] == theBoard['9'] != ' ':   
-            print(" **** " +turn + " won. ****")
+            txt = turn + " won."                 
+            printText(image, draw, txt) 
         elif theBoard['7'] == theBoard['5'] == theBoard['3'] != ' ':      
-            print(" **** " +turn + " won. ****")
+            txt = turn + " won."                 
+            printText(image, draw, txt) 
         elif theBoard['1'] == theBoard['5'] == theBoard['9'] != ' ':     
-            print(" **** " +turn + " won. ****")
+            txt = turn + " won."                 
+            printText(image, draw, txt) 
             
     # If neither X nor O wins and the board is full, we'll declare the result as 'tie'.
-    if count == 9:             
-        print("It's a Tie!!")
+    if count == 9:
+        txt = "It's a Tie!!"             
+        printText(image, draw, txt)              
         return True
 
 ###################################################
