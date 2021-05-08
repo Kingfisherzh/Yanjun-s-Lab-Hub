@@ -167,17 +167,29 @@ theBoard = {'1': '' , '2': '' , '3': '' ,
             '4': '' , '5': '' , '6': '' ,
             '7': '' , '8': '' , '9': '' }
 
-turn = 'X'
-enemy = 'O'
+turn = 'O'
+enemy = 'X'
 count = 0
 end = False
 touched = False
 # Send a signal to broker
 client.publish(topic, turn)
 
+# Detect enemy
+while content != enemy:
+    time.sleep(0.1)
+
 # Game start
 while content != enemy + 'win':
     
+    # Enemy's turn, detect enemy signal
+    while True:
+        move, player = content[0], content[1]
+        if player == enemy:
+            printboard(move, player, image, disp, rotation)
+            theBoard[move] = player
+            break
+
     touched = False
 
     txt = "It's your turn," + turn
@@ -217,13 +229,7 @@ while content != enemy + 'win':
         client.publish(topic, turn + 'win')
         break
 
-    # Enemy's turn, detect enemy signal
-    while True:
-        move, player = content[0], content[1]
-        if player == enemy:
-            printboard(move, player, image, disp, rotation)
-            theBoard[move] = player
-            break
+
     
 
 
