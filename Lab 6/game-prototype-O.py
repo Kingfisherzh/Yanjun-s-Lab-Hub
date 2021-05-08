@@ -129,28 +129,28 @@ def printText(image, draw, txt):
 def check(turn, count, theBoard):
     print(count)
     if count >= 5:
-        if theBoard['7'] == theBoard['8'] == theBoard['9'] != ' ':
+        if theBoard['7'] == theBoard['8'] == theBoard['9'] != '':
             txt = turn + " won."                 
             printText(image, draw, txt)               
-        elif theBoard['4'] == theBoard['5'] == theBoard['6'] != ' ':   
+        elif theBoard['4'] == theBoard['5'] == theBoard['6'] != '':   
             txt = turn + " won."                 
             printText(image, draw, txt) 
-        elif theBoard['1'] == theBoard['2'] == theBoard['3'] != ' ': 
+        elif theBoard['1'] == theBoard['2'] == theBoard['3'] != '': 
             txt = turn + " won."                 
             printText(image, draw, txt) 
-        elif theBoard['1'] == theBoard['4'] == theBoard['7'] != ' ': 
+        elif theBoard['1'] == theBoard['4'] == theBoard['7'] != '': 
             txt = turn + " won."                 
             printText(image, draw, txt) 
-        elif theBoard['2'] == theBoard['5'] == theBoard['8'] != ' ':
+        elif theBoard['2'] == theBoard['5'] == theBoard['8'] != '':
             txt = turn + " won."                 
             printText(image, draw, txt) 
-        elif theBoard['3'] == theBoard['6'] == theBoard['9'] != ' ':   
+        elif theBoard['3'] == theBoard['6'] == theBoard['9'] != '':   
             txt = turn + " won."                 
             printText(image, draw, txt) 
-        elif theBoard['7'] == theBoard['5'] == theBoard['3'] != ' ':      
+        elif theBoard['7'] == theBoard['5'] == theBoard['3'] != '':      
             txt = turn + " won."                 
             printText(image, draw, txt) 
-        elif theBoard['1'] == theBoard['5'] == theBoard['9'] != ' ':     
+        elif theBoard['1'] == theBoard['5'] == theBoard['9'] != '':     
             txt = turn + " won."                 
             printText(image, draw, txt) 
 
