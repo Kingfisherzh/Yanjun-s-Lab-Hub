@@ -184,12 +184,13 @@ while content != enemy + 'win':
     
     # Enemy's turn, detect enemy signal
     while True:
+        print(content)
         move, player = content[0], content[1]
         if player == enemy:
             printboard(move, player, image, disp, rotation)
             theBoard[move] = player
             break
-
+    
     touched = False
 
     txt = "It's your turn," + turn
