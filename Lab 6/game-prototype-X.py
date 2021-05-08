@@ -71,7 +71,7 @@ import paho.mqtt.client as mqtt
 import uuid
 
 # Global variable, current content
-content = None
+content = 1
 
 topic = 'IDD/tic-tac-toc'
 
@@ -224,11 +224,12 @@ while content != enemy + 'win':
 
     # Enemy's turn, detect enemy signal
     while True:
-        move, player = content[0], content[1]
-        if player == enemy:
-            printboard(move, player, image, disp, rotation)
-            theBoard[move] = player
-            break
+        if len(content) == 2:
+            move, player = content[0], content[1]
+            if player == enemy:
+                printboard(move, player, image, disp, rotation)
+                theBoard[move] = player
+                break
     
 
 
