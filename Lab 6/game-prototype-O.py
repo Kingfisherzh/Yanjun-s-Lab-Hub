@@ -172,12 +172,12 @@ enemy = 'X'
 count = 0
 end = False
 touched = False
-# Send a signal to broker
-client.publish(topic, turn)
 
 # Detect enemy
 while content != enemy:
-    time.sleep(0.1)
+    # Send a signal to broker
+    client.publish(topic, turn)
+    time.sleep(0.5)
 
 # Game start
 while content != enemy + 'win':
@@ -190,7 +190,7 @@ while content != enemy + 'win':
             printboard(move, player, image, disp, rotation)
             theBoard[move] = player
             break
-    
+
     touched = False
 
     txt = "It's your turn," + turn

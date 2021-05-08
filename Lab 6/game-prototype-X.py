@@ -177,7 +177,9 @@ client.publish(topic, turn)
 
 # Detect enemy
 while content != enemy:
-    time.sleep(0.1)
+    # Send a signal to broker
+    client.publish(topic, turn)
+    time.sleep(0.5)
 
 # Game start
 while content != enemy + 'win':
@@ -211,7 +213,7 @@ while content != enemy + 'win':
     content = str(move) + turn
 
     # Clear text
-    txt = "Wait your opposite"
+    txt = "Wait your oppo"
     printText(image, draw, txt)
 
     # Now we will check if player X or O has won,for every move after 5 moves. 
