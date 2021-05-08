@@ -71,7 +71,7 @@ import paho.mqtt.client as mqtt
 import uuid
 
 # Global variable, current content
-content = None
+content = 1
 
 topic = 'IDD/tic-tac-toc'
 
@@ -88,7 +88,7 @@ def on_message(cleint, userdata, msg):
     if msg.topic == topic:
         global content
         content = msg.payload.decode('UTF-8')
-
+        # print("on_message: ", content)
 
 # Every client needs a random ID
 client = mqtt.Client(str(uuid.uuid1()))
@@ -179,17 +179,19 @@ while content != enemy:
     client.publish(topic, turn)
     time.sleep(0.5)
 
+
 # Game start
 while content != enemy + 'win':
     
     # Enemy's turn, detect enemy signal
     while True:
-        print(content)
-        move, player = content[0], content[1]
-        if player == enemy:
-            printboard(move, player, image, disp, rotation)
-            theBoard[move] = player
-            break
+        # print(content)
+        if len(content) == 2:
+            move, player = content[0], content[1]
+            if player == enemy:
+                printboard(move, player, image, disp, rotation)
+                theBoard[move] = player
+                break
 
     touched = False
 
