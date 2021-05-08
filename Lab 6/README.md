@@ -87,7 +87,16 @@ Find at least one class (more are okay) partner, and design a distributed applic
 
 **1. Explain your design** For example, if you made a remote controlled banana piano, explain why anyone would want such a thing.
 
+We plan to build a tic-tac-toe game that two players can play remotely. This is a retrospective game that I played a lot with classmates in class and after class when I was in elementary school. Usually, we played it with a white paper and a pen. It is easy to pick up and to finish one turn. I enjoy the game a lot and would like to implement it with raspberry pi to make it technically more advanced.
+
 **2. Diagram the architecture of the system.** Be clear to document where input, output and computation occur, and label all parts and connections. For example, where is the banana, who is the banana player, where does the sound get played, and who is listening to the banana music?
+
+The players should have one raspberry pie and one keyboard at each side. The keyboard consists of a piece of cardboard, capacitive sensor and copper lines to connect each pin to the button on the cardboard. When user press a button on the cardboard, the information of the pressed key will be sent to raspberry pi, and sent to a topic called tic-tac-toe on the broker. The opposite player cannot read the latest pressed key until it receives the signal from the opposite player. A quick example would look like below.
+
+players: X, O
+
+information shown on broker (move + player): 3X, 2O, 5X, 9O, ...
+
 
 **3. Build a working prototype of the system.** Do think about the user interface: if someone encountered these bananas, would they know how to interact with them? Should they know what to expect?
 
