@@ -211,7 +211,6 @@ while content != enemy + 'win':
     content = str(move) + turn
 
     # Clear text
-    
     txt = "Wait your opposite"
     printText(image, draw, txt)
 
