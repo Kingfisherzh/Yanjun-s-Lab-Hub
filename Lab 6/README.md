@@ -55,51 +55,26 @@ Once connected you should be able to see all the messaged on the IDD topic. From
 
 We've included an updated example from [lab 4](https://github.com/FAR-Lab/Interactive-Lab-Hub/tree/Spring2021/Lab%204) that streams sensor inputs over MQTT. Feel free to poke around with it!
 
-## The One True ColorNet
-
-It is with great fortitude and resilience that we shall worship at the altar of the *OneColor*. Through unity of the collective RGB we too can find unity in our heart, minds and souls. With the help of machines can  overthrow the bourgeoisie, get on the same wavelength (this was also a color pun) and establish [Fully Automated Luxury Communism](https://en.wikipedia.org/wiki/Fully_Automated_Luxury_Communism).
-
-The first step on the path to *collective* enlightenment, plug the [APDS-9960 Proximity, Light, RGB, and Gesture Sensor](https://www.adafruit.com/product/3595) into the [Pi Display](https://www.adafruit.com/product/4393).
-
-<img src="https://cdn-shop.adafruit.com/970x728/3595-03.jpg" height="300">
-
-You are almost there!
-
-The second step to achieving our great enlightenment is to run `python color.py`
-
-You will find the two squares on the display. Half is showing an approximation of the output from the color sensor. The other half is up to the collective. Press the top button to share your color with the class. Your color is now our color, our color is now your color. We are one. 
-
-I was not super careful with handling the loop so you may need to press more than once if the timing isn't quite right. Also I have't load tested it so things might just immediately break when every pushes the button at once.
-
-You may ask "but what if I missed class?"
-
-Am I not admitted into the collective enlightenment of the *OneColor*?
-
-Of course not! You can got to [https://one-true-colornet.glitch.me/](https://one-true-colornet.glitch.me/) and become one with the ColorNet on the inter-webs.
-
-Glitch is a great tool for prototyping sites, interfaces and web-apps that's worth taking some time to get familiar with if you have a chance. Its not super pertinent for the class but good to know either way. 
-
-
-
 ## Make it your own
+My partner for this lab is Yanjun Zhou and we are making a Tic-tac-toe together. 
 
-Find at least one class (more are okay) partner, and design a distributed application together. 
-
-**1. Explain your design** For example, if you made a remote controlled banana piano, explain why anyone would want such a thing.
-
-We plan to build a tic-tac-toe game that two players can play remotely. This is a retrospective game that I played a lot with classmates in class and after class when I was in elementary school. Usually, we played it with a white paper and a pen. It is easy to pick up and to finish one turn. I enjoy the game a lot and would like to implement it with raspberry pi to make it technically more advanced.
+**1. Explain your design** 
+We are making a tic-tac--toe game for two-player. The two players can play remotely with each other by touching the place they want to put their chess at on a chessboard. Players will take turns to place their chess by touching on a chessboard. 
 
 **2. Diagram the architecture of the system.** Be clear to document where input, output and computation occur, and label all parts and connections. For example, where is the banana, who is the banana player, where does the sound get played, and who is listening to the banana music?
 
-The players should have one raspberry pie and one keyboard at each side. The keyboard consists of a piece of cardboard, capacitive sensor and copper lines to connect each pin to the button on the cardboard. When user press a button on the cardboard, the information of the pressed key will be sent to raspberry pi, and sent to a topic called tic-tac-toe on the broker. The opposite player cannot read the latest pressed key until it receives the signal from the opposite player. A quick example would look like below.
+The architecture of the system consists of two players's components. Each player has their own Raspberry Pi, screen, and a tic-tac-toe board. When it's one's turn, a 'it's your turn' message will be displayed on the screen. The player can then input their move by touching the tic-tac-toe board. The move will then occur on both of the player's screens. When a player makes a three-in-a-row, there will be a message saying who won the game and the game is ended. 
 
-players: X, O
+The communication of the two players are done by listening to the tic-tac-toe topic - when a player makes a move, they will send their player name and their move; the chessboard of the other player's will update accordingly.
 
-information shown on broker (move + player): 3X, 2O, 5X, 9O, ...
-
+![sys-diagram](./imgs/tictactoe-sys.png)
 
 **3. Build a working prototype of the system.** Do think about the user interface: if someone encountered these bananas, would they know how to interact with them? Should they know what to expect?
 
-**4. Document the working prototype in use.** It may be helpful to record a Zoom session where you should the input in one location clearly causing response in another location.
+The player who plays the 'X' chess will start first in the game. Each player will be informed of by a message on the screen when it's their turn to move. The layout of the touch chessboard is also identical to the chessboard on their screens, so they players know where to touch when they need to move.  
 
-**5. BONUS (Wendy didn't approve this so you should probably ignore it)** get the whole class to run your code and make your distributed system BIGGER.
+**4. Document the working prototype in use.** 
+
+![demo](./imgs/demo.png)
+
+The demo of the working prototype could be found here: https://youtu.be/bOe8RZwlmhE 
