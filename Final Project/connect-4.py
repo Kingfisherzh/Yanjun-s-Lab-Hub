@@ -129,7 +129,7 @@ def drop_piece(board, row, col, piece):
 	board[row][col] = piece
 
 def is_dropped(mpr121, col):
-	return mpr121[col]
+	return mpr121[col].value
 
 def is_valid_location(board, col):
 	return board[ROW_COUNT-1][col] == "_"
@@ -230,7 +230,6 @@ while not game_over:
 				row, col = int(content[0]), int(content[1]) 
 				drop_piece(board, row, col, oppo)
 
-				print("mpr121: ", str(col), mpr121[col])
 				# Place oppo move
 				while not is_dropped(mpr121, col):
 					printText(image, draw, "Place at col {}".format(col))
