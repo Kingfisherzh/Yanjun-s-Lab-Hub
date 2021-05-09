@@ -216,8 +216,11 @@ while not game_over:
 			turn = oppo
 
 	# Oppo turn
-	elif turn == oppo:				
-		print(turn)
+	elif turn == oppo:
+
+		printText(image, draw, "Wait your oppo")
+		time.sleep(1.0)
+		
 		while True:
 
 			# Detect if oppo dropped a piece
