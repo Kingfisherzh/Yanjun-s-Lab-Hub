@@ -223,7 +223,7 @@ while not game_over:
 			# Detect if oppo dropped a piece
 			if content[2] == oppo:
 
-				row, col = content[0], content[1] 
+				row, col = int(content[0]), int(content[1]) 
 				drop_piece(board, row, col, oppo)
 
 				# Place oppo move
