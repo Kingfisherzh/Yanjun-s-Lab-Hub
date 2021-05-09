@@ -132,6 +132,7 @@ def is_dropped(mpr121, col):
 	return mpr121[col]
 
 def is_valid_location(board, col):
+	print(col)
 	return board[ROW_COUNT-1][col] == "_"
 
 def get_next_open_row(board, col):
