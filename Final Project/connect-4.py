@@ -179,13 +179,12 @@ oppo = "O"
 
 while not game_over:
 
-	touched = False
+    touched = False
     printText(image, draw, "It's your turn," + turn)
-
+    
 	# Your turn
-	if turn == mine:
-	    while not touched:
-
+    if turn == mine:
+		while not touched:
 	        # Detect which pin is touched
 	        for i in range(len(COLUMN_COUNT)):
 	        	if mpr121[i].value:
@@ -224,7 +223,7 @@ while not game_over:
 			if content[2] == oppo:
 
 				row, col = content[0], content[1] 
-                drop_piece(board, row, col, mine)
+                drop_piece(board, row, col, oppo)
 
                 # Place oppo move
                 while not is_dropped(mpr121, col):
