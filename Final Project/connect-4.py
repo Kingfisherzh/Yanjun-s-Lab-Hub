@@ -230,9 +230,9 @@ while not game_over:
 				row, col = int(content[0]), int(content[1]) 
 				drop_piece(board, row, col, oppo)
 
+				print("mpr121: ", str(col), mpr121[col])
 				# Place oppo move
 				while not is_dropped(mpr121, col):
-					print(col, mpr121[col])
 					printText(image, draw, "Place at col {}".format(col))
 
 				printText(image, draw, "Done")
