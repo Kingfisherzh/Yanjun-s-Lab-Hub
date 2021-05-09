@@ -141,7 +141,7 @@ def get_next_open_row(board, col):
 
 def print_board(board):
 	for i in range(ROW_COUNT):
-		print(board[i] + "\n")
+		print(board[i])
 
 def winning_move(board, piece):
 	# Check horizontal locations for win
