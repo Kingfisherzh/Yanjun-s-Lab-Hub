@@ -174,6 +174,7 @@ board = create_board()
 game_over = False
 mine = "X"
 oppo = "O"
+turn = mine
 
 while not game_over:
 	
@@ -184,33 +185,34 @@ while not game_over:
 	if turn == mine:
 		while not touched:
 			# Detect which pin is touched
-			for i in range(len(COLUMN_COUNT)):
+			for i in range(COLUMN_COUNT):
 				if mpr121[i].value:
 					col = i
-					break
 
-			# Detect if valid
-			if is_valid_location(board, col):
-				row = get_next_open_row(board, col)
-				drop_piece(board, row, col, mine)
-				touched = True
+			    # Detect if valid
+			    if is_valid_location(board, col):
+				    row = get_next_open_row(board, col)
+				    drop_piece(board, row, col, mine)
+				    touched = True
 
-				# Detect if won
-				if winning_move(board, mine):
+				    # Detect if won
+				    if winning_move(board, mine):
 
-					# Show won
-					printText(image, draw, "You won")
+					    # Show won
+					    printText(image, draw, "You won")
 
-					# Send a won signal, 12XW
-					content = str(row) + str(col) + turn + "W"
-					client.publish(topic, content)
-					game_over = True
+					    # Send a won signal, 12XW
+					    content = str(row) + str(col) + turn + "W"
+					    client.publish(topic, content)
+					    game_over = True
 
-				else:
-					# Send a normal signal, e.g. 12X
-					content = str(row) + str(col) + turn
-					client.publish(topic, content)
-
+				    else:
+					    # Send a normal signal, e.g. 12X
+					    content = str(row) + str(col) + turn
+					    client.publish(topic, content)
+				    
+				    break
+                
 			turn = oppo
 
 	# Oppo turn
