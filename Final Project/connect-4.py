@@ -215,6 +215,9 @@ while not game_over:
 						turn = oppo
 						break
 
+					else:
+						printText(image, draw, "Not allowed. Try again.")
+
 	# Oppo turn
 	elif turn == oppo:
 
@@ -231,8 +234,10 @@ while not game_over:
 				drop_piece(board, row, col, oppo)
 
 				# Place oppo move
-				while not is_dropped(mpr121, col):
+				if not is_dropped(mpr121, col):
 					printText(image, draw, "Place at col {}".format(col))
+					while not is_dropped(mpr121, col):
+						pass
 
 				printText(image, draw, "Done")
 				time.sleep(1.0)	
