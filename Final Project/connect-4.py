@@ -232,6 +232,7 @@ while not game_over:
 
 				# Place oppo move
 				while not is_dropped(mpr121, col):
+					print(col, mpr121[col])
 					printText(image, draw, "Place at col {}".format(col))
 
 				printText(image, draw, "Done")
