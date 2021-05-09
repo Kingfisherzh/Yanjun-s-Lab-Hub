@@ -122,7 +122,7 @@ ROW_COUNT = 5
 COLUMN_COUNT = 6
 
 def create_board():
-	board = [["_" for i in range(ROW_COUNT)] for j in range(COLUMN_COUNT)]
+	board = [["_" for i in range(COLUMN_COUNT)] for j in range(ROW_COUNT)]
 	return board
 
 def drop_piece(board, row, col, piece):
@@ -132,7 +132,6 @@ def is_dropped(mpr121, col):
 	return mpr121[col]
 
 def is_valid_location(board, col):
-	print(col)
 	return board[ROW_COUNT-1][col] == "_"
 
 def get_next_open_row(board, col):
