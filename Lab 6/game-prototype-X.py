@@ -192,6 +192,7 @@ while content != enemy + 'win':
     txt = "It's your turn," + turn
     printText(image, draw, txt)
 
+
     # Your turn
     while not touched:
         # Detect which pin is touched
