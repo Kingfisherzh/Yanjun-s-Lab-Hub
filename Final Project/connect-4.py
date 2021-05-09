@@ -217,6 +217,7 @@ while not game_over:
 
 	# Oppo turn
 	elif turn == oppo:				
+		print(turn)
 		while True:
 
 			# Detect if oppo dropped a piece
