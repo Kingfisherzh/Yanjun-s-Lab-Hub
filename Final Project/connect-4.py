@@ -27,15 +27,15 @@ BAUDRATE = 64000000
 spi = board.SPI()
 # Create the ST7789 display:
 disp = st7789.ST7789(
-    spi,
-    cs=cs_pin,
-    dc=dc_pin,
-    rst=reset_pin,
-    baudrate=BAUDRATE,
-    width=135,
-    height=240,
-    x_offset=53,
-    y_offset=40,
+	spi,
+	cs=cs_pin,
+	dc=dc_pin,
+	rst=reset_pin,
+	baudrate=BAUDRATE,
+	width=135,
+	height=240,
+	x_offset=53,
+	y_offset=40,
 )
 
 # Create blank image for drawing.
@@ -72,16 +72,16 @@ topic = 'IDD/4-Connect'
 #this is the callback that gets called once we connect to the broker. 
 #we should add our subscribe functions here as well
 def on_connect(client, userdata, flags, rc):
-    print(f"connected with result code {rc}")
-    client.subscribe(topic)
+	print(f"connected with result code {rc}")
+	client.subscribe(topic)
 
 
 # this is the callback that gets called each time a message is recived
 def on_message(cleint, userdata, msg):
-    print(f"topic: {msg.topic} msg: {msg.payload.decode('UTF-8')}")
-    if msg.topic == topic:
-        global content
-        content = msg.payload.decode('UTF-8')
+	print(f"topic: {msg.topic} msg: {msg.payload.decode('UTF-8')}")
+	if msg.topic == topic:
+		global content
+		content = msg.payload.decode('UTF-8')
 
 
 # Every client needs a random ID
@@ -96,9 +96,7 @@ client.on_connect = on_connect
 client.on_message = on_message
 
 #connect to the broker
-client.connect(
-    'farlab.infosci.cornell.edu',
-    port=8883)
+client.connect('farlab.infosci.cornell.edu', port=8883)
 
 client.loop_start()
 
@@ -106,13 +104,13 @@ client.loop_start()
 ###################################################
 
 def printText(image, draw, txt):
-    y = 0
-    draw.rectangle((0, 0, width, height), outline=0, fill="#FFFFFF")
-    words = txt.split()
-    for i in range(len(words)):
-        draw.text((10, y), words[i], font=font, fill="#000000")
-        disp.image(image, rotation)
-        y += 32
+	y = 0
+	draw.rectangle((0, 0, width, height), outline=0, fill="#FFFFFF")
+	words = txt.split()
+	for i in range(len(words)):
+		draw.text((10, y), words[i], font=font, fill="#000000")
+		disp.image(image, rotation)
+		y += 32
 
 ###################################################
 
@@ -178,20 +176,20 @@ mine = "X"
 oppo = "O"
 
 while not game_over:
+	
+	touched = False
+	printText(image, draw, "It's your turn," + turn)
 
-    touched = False
-    printText(image, draw, "It's your turn," + turn)
-    
 	# Your turn
-    if turn == mine:
+	if turn == mine:
 		while not touched:
-	        # Detect which pin is touched
-	        for i in range(len(COLUMN_COUNT)):
-	        	if mpr121[i].value:
-	                col = i
-	                break
+			# Detect which pin is touched
+			for i in range(len(COLUMN_COUNT)):
+				if mpr121[i].value:
+					col = i
+					break
 
-	        # Detect if valid
+			# Detect if valid
 			if is_valid_location(board, col):
 				row = get_next_open_row(board, col)
 				drop_piece(board, row, col, mine)
@@ -211,10 +209,10 @@ while not game_over:
 				else:
 					# Send a normal signal, e.g. 12X
 					content = str(row) + str(col) + turn
-				    client.publish(topic, content)
-				    
-      		turn = oppo
-                                     
+					client.publish(topic, content)
+
+			turn = oppo
+
 	# Oppo turn
 	elif turn == oppo:				
 		while True:
@@ -223,22 +221,22 @@ while not game_over:
 			if content[2] == oppo:
 
 				row, col = content[0], content[1] 
-                drop_piece(board, row, col, oppo)
+				drop_piece(board, row, col, oppo)
 
-                # Place oppo move
-                while not is_dropped(mpr121, col):
-                	printText(image, draw, "Place at col {}".format(col))
+				# Place oppo move
+				while not is_dropped(mpr121, col):
+					printText(image, draw, "Place at col {}".format(col))
 
-                printText(image, draw, "Done")
-                time.sleep(1.0)	
+				printText(image, draw, "Done")
+				time.sleep(1.0)	
 
-                # Detect if oppo won
+				# Detect if oppo won
 				if len(content) == 4 and content[3] == "W":
 					game_over = True
 					printText(image, draw, "Oppo won")
 				
 				break
-        		
-        turn = mine
+				
+		turn = mine
 
-    print_board(board)
+	print_board(board)
