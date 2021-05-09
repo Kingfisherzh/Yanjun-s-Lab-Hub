@@ -174,7 +174,7 @@ board = create_board()
 game_over = False
 mine = "O"
 oppo = "X"
-turn = mine
+turn = oppo
 
 while not game_over:
 	
