@@ -218,6 +218,7 @@ while not game_over:
 	# Oppo turn
 	elif turn == oppo:
 
+		print(content)
 		printText(image, draw, "Wait your oppo")
 		time.sleep(1.0)
 		
@@ -241,8 +242,7 @@ while not game_over:
 					game_over = True
 					printText(image, draw, "Oppo won")
 				
+				turn = mine
 				break
-				
-		turn = mine
 
 	print_board(board)
