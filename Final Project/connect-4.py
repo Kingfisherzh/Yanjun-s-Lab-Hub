@@ -188,7 +188,7 @@ while not game_over:
 			for i in range(COLUMN_COUNT):
 				if mpr121[i].value:
 					col = i
-					
+
 					# Detect if valid
 					if is_valid_location(board, col):
 						row = get_next_open_row(board, col)
@@ -211,7 +211,7 @@ while not game_over:
 							content = str(row) + str(col) + turn
 							client.publish(topic, content)
 
-					break
+						break
 
 			turn = oppo
 
