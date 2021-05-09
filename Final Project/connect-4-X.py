@@ -177,7 +177,7 @@ oppo = "O"
 turn = mine
 
 while not game_over:
-	
+
 	touched = False
 	printText(image, draw, "It's your turn," + turn)
 
