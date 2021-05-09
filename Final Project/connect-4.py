@@ -183,6 +183,7 @@ while not game_over:
 
 	# Your turn
 	if turn == mine:
+		print("mine: ", content)
 		while not touched:
 			# Detect which pin is touched
 			for i in range(COLUMN_COUNT):
@@ -211,14 +212,13 @@ while not game_over:
 							content = str(row) + str(col) + turn
 							client.publish(topic, content)
 
+						turn = oppo
 						break
-
-			turn = oppo
 
 	# Oppo turn
 	elif turn == oppo:
 
-		print(content)
+		print("oppo: ", content)
 		printText(image, draw, "Wait your oppo")
 		time.sleep(1.0)
 		
