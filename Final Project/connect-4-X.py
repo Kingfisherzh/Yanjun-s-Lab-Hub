@@ -140,7 +140,7 @@ def get_next_open_row(board, col):
 			return r
 
 def print_board(board):
-	for i in range(ROW_COUNT):
+	for i in reversed(range(ROW_COUNT)):
 		print(board[i])
 
 def winning_move(board, piece):
